@@ -1,0 +1,7 @@
+
+- id: jira-issue-in-commit-message
+  name: jira-issue-in-commit-message
+  description: Check presence of JIRA issue key in commit message.
+  entry: python3 hooks/check_jira_commit.py
+  language: python
+  stages: [commit-msg]
