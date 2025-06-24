@@ -11,6 +11,7 @@ A simple yet powerful `pre-commit` hook that ensures all commit messages include
      rev: 1.0.0
      hooks:
        - id: jira-issue-in-commit-message
+       stages: [commit-msg]
    ```
 
 2. Install the pre-commit hooks:
@@ -21,8 +22,23 @@ A simple yet powerful `pre-commit` hook that ensures all commit messages include
 
 3. Make a commit with to see the hook in action.
 
+   ```bash
+   $ git commit -m "this commmit message is missing JIRA issue" --allow-empty
+   jira-issue-in-commit-message.............................................Failed
+   - hook id: jira-issue-in-commit-message
+   - exit code: 1
+
+   ERROR: Commit message must contain a JIRA issue key (e.g., PROJ-1234).
+
+   $ git commit -m "this commmit message is correct [PROJECT-12345]" --allow-empty
+   jira-issue-in-commit-message.............................................Passed
+   [feature/pre-commit 093cfb7b] this commmit message is correct [PROJECT-12345]
+   ```
+
 ## CI/CD integration
+
 To enforce a consistent commit message format within your CI/CD pipeline using this pre-commit hook, you can integrate the following command into your build job:
+
    ```bash
    # Prerequisite: The pre-commit hook must be installed
    git commit --amend --no-edit   # This triggers the commit message check
