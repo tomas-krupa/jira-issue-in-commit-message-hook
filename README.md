@@ -8,16 +8,16 @@ A simple yet powerful `pre-commit` hook that ensures all commit messages include
 
    ```yaml
    - repo: https://github.com/tomas-krupa/jira-issue-in-commit-message-hook.git
-     rev: 1.0.0
+     rev: 1.0.1
      hooks:
        - id: jira-issue-in-commit-message
-       stages: [commit-msg]
+         stages: [commit-msg]
    ```
 
 2. Install the pre-commit hooks:
 
    ```bash
-   pre-commit install
+   pre-commit install --hook-type commit-msg
    ```
 
 3. Make a commit with to see the hook in action.
