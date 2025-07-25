@@ -2,6 +2,12 @@
 
 A simple yet powerful `pre-commit` hook that ensures all commit messages include a valid JIRA issue key (e.g., `PROJ-123`). This helps enforce traceability and integrates nicely with team workflows that use JIRA.
 
+## Features
+
+- Ensures every commit message contains a JIRA issue key like `PROJ-123`.
+- Supports optional exclusion pattern (e.g., for messages like `NOJIRA`).
+- Works with `commit-msg` hook stage via `pre-commit`.
+
 ## Installation
 
 1. Add this repository to your `.pre-commit-config.yaml`:
@@ -11,6 +17,7 @@ A simple yet powerful `pre-commit` hook that ensures all commit messages include
      rev: 1.0.1
      hooks:
        - id: jira-issue-in-commit-message
+         args: ["--exclude", ".*NOJIRA.*"]  # Optional: allow commits without JIRA issue but containing "NOJIRA"
          stages: [commit-msg]
    ```
 
